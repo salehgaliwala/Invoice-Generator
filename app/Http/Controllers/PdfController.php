@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Edf;
 use App\Models\Invoice;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Http\Response;
 
 class PdfController extends Controller
 {
     public function downloadInvoice(Invoice $invoice)
     {
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+
+        if ($user && ! $user->companies->contains($invoice->company_id)) {
+            abort(403, 'Unauthorized access to invoice tenant.');
+        }
+
         $invoice->load(['company', 'customer', 'items.product']);
 
         $pdf = Pdf::loadView('pdf.tax-invoice', [
@@ -27,6 +33,13 @@ class PdfController extends Controller
 
     public function downloadEdf(Edf $edf)
     {
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+
+        if ($user && ! $user->companies->contains($edf->company_id)) {
+            abort(403, 'Unauthorized access to EDF tenant.');
+        }
+
         $edf->load(['company', 'invoice.customer']);
 
         $pdf = Pdf::loadView('pdf.edf-form', [
