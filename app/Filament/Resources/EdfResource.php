@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EdfResource\Pages;
 use App\Models\Edf;
 use App\Models\Invoice;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -29,7 +30,12 @@ class EdfResource extends Resource
                     ->schema([
                         Forms\Components\Select::make('invoice_id')
                             ->label('Export Invoice')
-                            ->options(fn () => Invoice::whereIn('transaction_type', ['export_lut', 'export_igst'])->pluck('invoice_number', 'id'))
+                            ->options(function () {
+                                $tenantId = Filament::getTenant()?->id;
+                                return Invoice::where('company_id', $tenantId)
+                                    ->whereIn('transaction_type', ['export_lut', 'export_igst'])
+                                    ->pluck('invoice_number', 'id');
+                            })
                             ->required()
                             ->searchable()
                             ->reactive()

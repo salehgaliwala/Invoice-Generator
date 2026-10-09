@@ -36,6 +36,7 @@ class InvoiceResource extends Resource
                             Forms\Components\Select::make('customer_id')
                                 ->label('Customer / Buyer')
                                 ->relationship('customer', 'name')
+                                ->options(fn () => Customer::where('company_id', Filament::getTenant()?->id)->pluck('name', 'id'))
                                 ->required()
                                 ->searchable()
                                 ->preload()
@@ -137,7 +138,7 @@ class InvoiceResource extends Resource
                                 ->schema([
                                     Forms\Components\Select::make('product_id')
                                         ->label('Select Product / Catalog Item')
-                                        ->options(fn () => Product::pluck('name', 'id'))
+                                        ->options(fn () => Product::where('company_id', Filament::getTenant()?->id)->pluck('name', 'id'))
                                         ->searchable()
                                         ->reactive()
                                         ->afterStateUpdated(function ($state, Set $set, Get $get) {
@@ -193,6 +194,10 @@ class InvoiceResource extends Resource
                                         ->required()
                                         ->reactive()
                                         ->afterStateUpdated(fn (Set $set, Get $get) => self::updateItemAndFormTotals($set, $get)),
+
+                                    Forms\Components\Hidden::make('cgst_rate')->default(0.00),
+                                    Forms\Components\Hidden::make('sgst_rate')->default(0.00),
+                                    Forms\Components\Hidden::make('igst_rate')->default(0.00),
 
                                     Forms\Components\TextInput::make('taxable_amount')
                                         ->numeric()
@@ -331,6 +336,9 @@ class InvoiceResource extends Resource
 
         if (! empty($calculation['items'][0])) {
             $item = $calculation['items'][0];
+            $set('cgst_rate', sprintf('%.2f', $item['cgst_rate']));
+            $set('sgst_rate', sprintf('%.2f', $item['sgst_rate']));
+            $set('igst_rate', sprintf('%.2f', $item['igst_rate']));
             $set('taxable_amount', sprintf('%.2f', $item['taxable_amount']));
             $set('cgst_amount', sprintf('%.2f', $item['cgst_amount']));
             $set('sgst_amount', sprintf('%.2f', $item['sgst_amount']));

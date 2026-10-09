@@ -97,7 +97,7 @@ CREATE TABLE `companies` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `companies_gstin_index` (`gstin`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,7 @@ CREATE TABLE `companies` (
 
 LOCK TABLES `companies` WRITE;
 /*!40000 ALTER TABLE `companies` DISABLE KEYS */;
-INSERT INTO `companies` VALUES (1,'Apex Global Traders Private Limited','Apex Exporters','27AAACA1234A1Z5','AAACA1234A','0312345678','Plot No. 42, MIDC Industrial Area, Andheri East, Mumbai - 400093','Maharashtra','27','Rajesh Sharma','Managing Director','State Bank of India','CAG Branch, Fort, Mumbai','39820192831','SBIN0009988','0210001',NULL,NULL,'INV',NULL,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,'Bharat Tech Solutions Pvt Ltd','BharatTech','07BBBBB5678B1Z2','BBBBB5678B','0798765432','102, Connaught Place, New Delhi - 110001','Delhi','07','Anita Verma','Chief Executive Officer','HDFC Bank','Connaught Place Branch, New Delhi','50200012345678','HDFC0000001','0330002',NULL,NULL,'BTS',NULL,'2026-10-09 13:59:34','2026-10-09 13:59:34');
+INSERT INTO `companies` VALUES (1,'Apex Global Traders Private Limited','Apex Exporters','27AAACA1234A1Z5','AAACA1234A','0312345678','Plot No. 42, MIDC Industrial Area, Andheri East, Mumbai - 400093','Maharashtra','27','Rajesh Sharma','Managing Director','State Bank of India','CAG Branch, Fort, Mumbai','39820192831','SBIN0009988','0210001',NULL,NULL,'INV',NULL,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,'Bharat Tech Solutions Pvt Ltd','BharatTech','07BBBBB5678B1Z2','BBBBB5678B','0798765432','102, Connaught Place, New Delhi - 110001','Delhi','07','Anita Verma','Chief Executive Officer','HDFC Bank','Connaught Place Branch, New Delhi','50200012345678','HDFC0000001','0330002',NULL,NULL,'BTS',NULL,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(3,'Apex Global Traders Private Limited','Apex Exporters','27AAACA1234A1Z5','AAACA1234A','0312345678','Plot No. 42, MIDC Industrial Area, Andheri East, Mumbai - 400093','Maharashtra','27','Rajesh Sharma','Managing Director','State Bank of India','CAG Branch, Fort, Mumbai','39820192831','SBIN0009988','0210001',NULL,NULL,'INV',NULL,'2026-10-09 18:16:12','2026-10-09 18:16:12'),(4,'Bharat Tech Solutions Pvt Ltd','BharatTech','07BBBBB5678B1Z2','BBBBB5678B','0798765432','102, Connaught Place, New Delhi - 110001','Delhi','07','Anita Verma','Chief Executive Officer','HDFC Bank','Connaught Place Branch, New Delhi','50200012345678','HDFC0000001','0330002',NULL,NULL,'BTS',NULL,'2026-10-09 18:16:12','2026-10-09 18:16:12');
 /*!40000 ALTER TABLE `companies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ CREATE TABLE `company_user` (
   KEY `company_user_user_id_foreign` (`user_id`),
   CONSTRAINT `company_user_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE,
   CONSTRAINT `company_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +138,7 @@ CREATE TABLE `company_user` (
 
 LOCK TABLES `company_user` WRITE;
 /*!40000 ALTER TABLE `company_user` DISABLE KEYS */;
-INSERT INTO `company_user` VALUES (1,1,1,'admin','2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,2,1,'admin','2026-10-09 13:59:34','2026-10-09 13:59:34');
+INSERT INTO `company_user` VALUES (1,1,1,'admin','2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,2,1,'admin','2026-10-09 13:59:34','2026-10-09 13:59:34'),(3,3,1,'admin','2026-10-09 18:16:12','2026-10-09 18:16:12'),(4,4,1,'admin','2026-10-09 18:16:12','2026-10-09 18:16:12');
 /*!40000 ALTER TABLE `company_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +173,7 @@ CREATE TABLE `customers` (
   PRIMARY KEY (`id`),
   KEY `customers_company_id_name_index` (`company_id`,`name`),
   CONSTRAINT `customers_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +182,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (1,1,'Reliance Retail Logistics Ltd','billing@relianceretail.com','+91 22 6789 0000','27AAACR9999R1ZK','AAACR9999R','Reliance Corporate Park, Thane Belapur Road, Navi Mumbai','Navi Mumbai','Maharashtra','27','India',NULL,NULL,NULL,NULL,NULL,0,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,1,'Bangalore Machinery Corp','accounts@bangalore machinery.com','+91 80 2345 6789','29AAACB1111B1Z3','AAACB1111B','5th Block, Koramangala, Bengaluru','Bengaluru','Karnataka','29','India',NULL,NULL,NULL,NULL,NULL,0,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(3,1,'Acme Global LLC','import@acmeglobal.com','+1 212 555 0199',NULL,NULL,'350 Fifth Avenue, Suite 4000, New York, NY 10118','New York','New York','96','United States',NULL,NULL,NULL,NULL,NULL,1,'2026-10-09 13:59:34','2026-10-09 13:59:34');
+INSERT INTO `customers` VALUES (1,1,'Reliance Retail Logistics Ltd','billing@relianceretail.com','+91 22 6789 0000','27AAACR9999R1ZK','AAACR9999R','Reliance Corporate Park, Thane Belapur Road, Navi Mumbai','Navi Mumbai','Maharashtra','27','India',NULL,NULL,NULL,NULL,NULL,0,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,1,'Bangalore Machinery Corp','accounts@bangalore machinery.com','+91 80 2345 6789','29AAACB1111B1Z3','AAACB1111B','5th Block, Koramangala, Bengaluru','Bengaluru','Karnataka','29','India',NULL,NULL,NULL,NULL,NULL,0,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(3,1,'Acme Global LLC','import@acmeglobal.com','+1 212 555 0199',NULL,NULL,'350 Fifth Avenue, Suite 4000, New York, NY 10118','New York','New York','96','United States',NULL,NULL,NULL,NULL,NULL,1,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(4,3,'Reliance Retail Logistics Ltd','billing@relianceretail.com','+91 22 6789 0000','27AAACR9999R1ZK','AAACR9999R','Reliance Corporate Park, Thane Belapur Road, Navi Mumbai','Navi Mumbai','Maharashtra','27','India',NULL,NULL,NULL,NULL,NULL,0,'2026-10-09 18:16:12','2026-10-09 18:16:12'),(5,3,'Bangalore Machinery Corp','accounts@bangalore machinery.com','+91 80 2345 6789','29AAACB1111B1Z3','AAACB1111B','5th Block, Koramangala, Bengaluru','Bengaluru','Karnataka','29','India',NULL,NULL,NULL,NULL,NULL,0,'2026-10-09 18:16:12','2026-10-09 18:16:12'),(6,3,'Acme Global LLC','import@acmeglobal.com','+1 212 555 0199',NULL,NULL,'350 Fifth Avenue, Suite 4000, New York, NY 10118','New York','New York','96','United States',NULL,NULL,NULL,NULL,NULL,1,'2026-10-09 18:16:12','2026-10-09 18:16:12');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +222,7 @@ CREATE TABLE `edfs` (
   KEY `edfs_company_id_created_at_index` (`company_id`,`created_at`),
   CONSTRAINT `edfs_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE,
   CONSTRAINT `edfs_invoice_id_foreign` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +231,7 @@ CREATE TABLE `edfs` (
 
 LOCK TABLES `edfs` WRITE;
 /*!40000 ALTER TABLE `edfs` DISABLE KEYS */;
-INSERT INTO `edfs` VALUES (1,1,2,'EDF-INV/26-27/0002','0312345678','0210001','Nava Sheva (INNSA1)','SB7891234','2026-10-09','Jeena & Company CHA','CHA112233','MAERSK SEALAND V.204','Nava Sheva','New York Port','FOB','USD',83.5000,25000.00,25000.00,2087500.00,'Export under LUT without tax payment.','2026-10-09 13:59:34','2026-10-09 13:59:34');
+INSERT INTO `edfs` VALUES (1,1,2,'EDF-INV/26-27/0002','0312345678','0210001','Nava Sheva (INNSA1)','SB7891234','2026-10-09','Jeena & Company CHA','CHA112233','MAERSK SEALAND V.204','Nava Sheva','New York Port','FOB','USD',83.5000,25000.00,25000.00,2087500.00,'Export under LUT without tax payment.','2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,3,4,'EDF-INV/26-27/0002','0312345678','0210001','Nava Sheva (INNSA1)','SB7891234','2026-10-09','Jeena & Company CHA','CHA112233','MAERSK SEALAND V.204','Nava Sheva','New York Port','FOB','USD',83.5000,25000.00,25000.00,2087500.00,'Export under LUT without tax payment.','2026-10-09 18:16:12','2026-10-09 18:16:12');
 /*!40000 ALTER TABLE `edfs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,7 +298,7 @@ CREATE TABLE `invoice_items` (
   KEY `invoice_items_product_id_foreign` (`product_id`),
   CONSTRAINT `invoice_items_invoice_id_foreign` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`id`) ON DELETE CASCADE,
   CONSTRAINT `invoice_items_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +307,7 @@ CREATE TABLE `invoice_items` (
 
 LOCK TABLES `invoice_items` WRITE;
 /*!40000 ALTER TABLE `invoice_items` DISABLE KEYS */;
-INSERT INTO `invoice_items` VALUES (1,1,1,'Industrial Hydraulic Valve 50mm','84818090',10.0000,'PCS',12500.00,5000.00,120000.00,18.00,9.00,10800.00,9.00,10800.00,0.00,0.00,141600.00,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,2,1,'Industrial Hydraulic Valve 50mm (Export Specs)','84818090',50.0000,'PCS',500.00,0.00,25000.00,18.00,0.00,0.00,0.00,0.00,0.00,0.00,25000.00,'2026-10-09 13:59:34','2026-10-09 13:59:34');
+INSERT INTO `invoice_items` VALUES (1,1,1,'Industrial Hydraulic Valve 50mm','84818090',10.0000,'PCS',12500.00,5000.00,120000.00,18.00,9.00,10800.00,9.00,10800.00,0.00,0.00,141600.00,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,2,1,'Industrial Hydraulic Valve 50mm (Export Specs)','84818090',50.0000,'PCS',500.00,0.00,25000.00,18.00,0.00,0.00,0.00,0.00,0.00,0.00,25000.00,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(3,3,3,'Industrial Hydraulic Valve 50mm','84818090',10.0000,'PCS',12500.00,5000.00,120000.00,18.00,9.00,10800.00,9.00,10800.00,0.00,0.00,141600.00,'2026-10-09 18:16:12','2026-10-09 18:16:12'),(4,4,3,'Industrial Hydraulic Valve 50mm (Export Specs)','84818090',50.0000,'PCS',500.00,0.00,25000.00,18.00,0.00,0.00,0.00,0.00,0.00,0.00,25000.00,'2026-10-09 18:16:12','2026-10-09 18:16:12');
 /*!40000 ALTER TABLE `invoice_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +328,7 @@ CREATE TABLE `invoice_sequences` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `invoice_sequences_company_id_financial_year_unique` (`company_id`,`financial_year`),
   CONSTRAINT `invoice_sequences_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,7 +337,7 @@ CREATE TABLE `invoice_sequences` (
 
 LOCK TABLES `invoice_sequences` WRITE;
 /*!40000 ALTER TABLE `invoice_sequences` DISABLE KEYS */;
-INSERT INTO `invoice_sequences` VALUES (1,1,'26-27',2,'2026-10-09 13:59:34','2026-10-09 13:59:34');
+INSERT INTO `invoice_sequences` VALUES (1,1,'26-27',2,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,3,'26-27',2,'2026-10-09 18:16:12','2026-10-09 18:16:12');
 /*!40000 ALTER TABLE `invoice_sequences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,7 +384,7 @@ CREATE TABLE `invoices` (
   KEY `invoices_company_id_invoice_date_index` (`company_id`,`invoice_date`),
   CONSTRAINT `invoices_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE,
   CONSTRAINT `invoices_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,7 +393,7 @@ CREATE TABLE `invoices` (
 
 LOCK TABLES `invoices` WRITE;
 /*!40000 ALTER TABLE `invoices` DISABLE KEYS */;
-INSERT INTO `invoices` VALUES (1,1,1,'INV/26-27/0001','26-27','2026-10-09','2026-11-08','Maharashtra','27','domestic',NULL,NULL,'INR',1.0000,125000.00,5000.00,120000.00,10800.00,10800.00,0.00,21600.00,0.00,141600.00,'One Lakh Forty One Thousand Six Hundred Rupees Only',NULL,NULL,'issued','2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,1,3,'INV/26-27/0002','26-27','2026-10-09','2026-11-23','OTHER TERRITORY','96','export_lut','LUT/2024-25/001','2026-01-01','USD',83.5000,25000.00,0.00,25000.00,0.00,0.00,0.00,0.00,0.00,25000.00,'Twenty Five Thousand USD Only',NULL,NULL,'issued','2026-10-09 13:59:34','2026-10-09 13:59:34');
+INSERT INTO `invoices` VALUES (1,1,1,'INV/26-27/0001','26-27','2026-10-09','2026-11-08','Maharashtra','27','domestic',NULL,NULL,'INR',1.0000,125000.00,5000.00,120000.00,10800.00,10800.00,0.00,21600.00,0.00,141600.00,'One Lakh Forty One Thousand Six Hundred Rupees Only',NULL,NULL,'issued','2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,1,3,'INV/26-27/0002','26-27','2026-10-09','2026-11-23','OTHER TERRITORY','96','export_lut','LUT/2024-25/001','2026-01-01','USD',83.5000,25000.00,0.00,25000.00,0.00,0.00,0.00,0.00,0.00,25000.00,'Twenty Five Thousand USD Only',NULL,NULL,'issued','2026-10-09 13:59:34','2026-10-09 13:59:34'),(3,3,4,'INV/26-27/0001','26-27','2026-10-09','2026-11-08','Maharashtra','27','domestic',NULL,NULL,'INR',1.0000,125000.00,5000.00,120000.00,10800.00,10800.00,0.00,21600.00,0.00,141600.00,'One Lakh Forty One Thousand Six Hundred Rupees Only',NULL,NULL,'issued','2026-10-09 18:16:12','2026-10-09 18:16:12'),(4,3,6,'INV/26-27/0002','26-27','2026-10-09','2026-11-23','OTHER TERRITORY','96','export_lut','LUT/2024-25/001','2026-01-01','USD',83.5000,25000.00,0.00,25000.00,0.00,0.00,0.00,0.00,0.00,25000.00,'Twenty Five Thousand USD Only',NULL,NULL,'issued','2026-10-09 18:16:12','2026-10-09 18:16:12');
 /*!40000 ALTER TABLE `invoices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -570,7 +570,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (`id`),
   KEY `products_company_id_hsn_sac_code_index` (`company_id`,`hsn_sac_code`),
   CONSTRAINT `products_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -579,7 +579,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,1,'Industrial Hydraulic Valve 50mm','IHV-50','84818090',NULL,'PCS',12500.00,18.00,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,1,'Precision Stainless Steel Fitting','PSSF-10','73072200',NULL,'KGS',450.00,18.00,'2026-10-09 13:59:34','2026-10-09 13:59:34');
+INSERT INTO `products` VALUES (1,1,'Industrial Hydraulic Valve 50mm','IHV-50','84818090',NULL,'PCS',12500.00,18.00,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(2,1,'Precision Stainless Steel Fitting','PSSF-10','73072200',NULL,'KGS',450.00,18.00,'2026-10-09 13:59:34','2026-10-09 13:59:34'),(3,3,'Industrial Hydraulic Valve 50mm','IHV-50','84818090',NULL,'PCS',12500.00,18.00,'2026-10-09 18:16:12','2026-10-09 18:16:12'),(4,3,'Precision Stainless Steel Fitting','PSSF-10','73072200',NULL,'KGS',450.00,18.00,'2026-10-09 18:16:12','2026-10-09 18:16:12');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -656,4 +656,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-09 17:25:11
+-- Dump completed on 2026-10-09 18:16:12
