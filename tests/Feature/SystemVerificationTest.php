@@ -2,21 +2,57 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Resources\CompanyResource\Pages\CreateCompany;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Edf;
 use App\Models\Invoice;
-use App\Models\Product;
 use App\Models\User;
 use App\Services\GstTaxCalculatorService;
 use App\Services\InvoiceNumberGeneratorService;
 use App\Services\NumberToWordsService;
+use Filament\Facades\Filament;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class SystemVerificationTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function test_company_creation_attaches_company_to_user_tenants(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $companyData = [
+            'legal_name' => 'New Tenant Corp Pvt Ltd',
+            'trade_name' => 'NewTenant',
+            'gstin' => '27AAACN1234N1Z1',
+            'pan' => 'AAACN1234N',
+            'iec' => '0100001111',
+            'registered_address' => 'Sample Address',
+            'state' => 'Maharashtra',
+            'state_code' => '27',
+            'authorized_signatory_name' => 'John Doe',
+            'bank_name' => 'ICICI Bank',
+            'bank_branch' => 'Main Branch',
+            'bank_account_number' => '1122334455',
+            'bank_ifsc' => 'ICIC0001122',
+            'invoice_prefix' => 'NTC',
+        ];
+
+        Livewire::test(CreateCompany::class)
+            ->fillForm($companyData)
+            ->call('create')
+            ->assertHasNoFormErrors();
+
+        $company = Company::where('legal_name', 'New Tenant Corp Pvt Ltd')->first();
+        $this->assertNotNull($company);
+
+        $user->refresh();
+        $this->assertTrue($user->getTenants(Filament::getPanel())->contains($company));
+    }
 
     public function test_invoice_number_generator_is_thread_safe_and_gst_rule_46_compliant(): void
     {
