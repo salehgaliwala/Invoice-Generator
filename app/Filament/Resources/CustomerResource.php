@@ -73,6 +73,26 @@ class CustomerResource extends Resource
                             ->length(2),
                         Forms\Components\TextInput::make('shipping_country'),
                     ])->columns(2),
+
+                Forms\Components\Section::make('Bank & AD Details (For Export Remittances & EDF)')
+                    ->schema([
+                        Forms\Components\TextInput::make('bank_name')
+                            ->label('Bank Name')
+                            ->placeholder('e.g. HDFC BANK LTD'),
+                        Forms\Components\TextInput::make('bank_branch')
+                            ->label('Bank Branch')
+                            ->placeholder('e.g. Churchgate Branch'),
+                        Forms\Components\TextInput::make('bank_city')
+                            ->label('Bank City')
+                            ->placeholder('e.g. Mumbai'),
+                        Forms\Components\TextInput::make('account_number')
+                            ->label('Account Number'),
+                        Forms\Components\TextInput::make('ad_code')
+                            ->label('AD Code (Authorized Dealer Code)'),
+                        Forms\Components\Textarea::make('ad_name_address')
+                            ->label('AD Bank Name & Full Address')
+                            ->columnSpanFull(),
+                    ])->columns(2),
             ]);
     }
 

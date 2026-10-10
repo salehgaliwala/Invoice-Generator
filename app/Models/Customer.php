@@ -29,6 +29,12 @@ class Customer extends Model
         'shipping_state_code',
         'shipping_country',
         'is_export',
+        'bank_name',
+        'bank_branch',
+        'bank_city',
+        'account_number',
+        'ad_code',
+        'ad_name_address',
     ];
 
     protected function casts(): array
